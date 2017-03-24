@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.ivr.mapper.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.ivr.model.Order">
+    <id column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="CAR_USER_CHANNEL" jdbcType="INTEGER" property="carUserChannel" />
+    <result column="CAR_ID" jdbcType="INTEGER" property="carId" />
+    <result column="BUSINESS_TYPE" jdbcType="INTEGER" property="businessType" />
+    <result column="ORDER_TYPE" jdbcType="INTEGER" property="orderType" />
+    <result column="ORDER_SOURCE" jdbcType="INTEGER" property="orderSource" />
+    <result column="CAR_TYPE" jdbcType="VARCHAR" property="carType" />
+    <result column="CAR_NUMBER" jdbcType="INTEGER" property="carNumber" />
+    <result column="START_PLACE" jdbcType="VARCHAR" property="startPlace" />
+    <result column="START_GPS" jdbcType="VARCHAR" property="startGps" />
+    <result column="END_GPS" jdbcType="VARCHAR" property="endGps" />
+    <result column="EXPECTED_KM" jdbcType="REAL" property="expectedKm" />
+    <result column="ACTUAL_KM" jdbcType="REAL" property="actualKm" />
+    <result column="ALLOCATE_ORDER" jdbcType="INTEGER" property="allocateOrder" />
+    <result column="TOTAL_PRICE" jdbcType="REAL" property="totalPrice" />
+    <result column="EXPECTED_PRICE" jdbcType="REAL" property="expectedPrice" />
+    <result column="ACTUAL_PRICE" jdbcType="REAL" property="actualPrice" />
+    <result column="LOW_SPEED_TIMES" jdbcType="DOUBLE" property="lowSpeedTimes" />
+    <result column="OTHER_PRICE" jdbcType="REAL" property="otherPrice" />
+    <result column="OTHER_PRICE_DESCRIPTION" jdbcType="VARCHAR" property="otherPriceDescription" />
+    <result column="OTHER_PRICE2" jdbcType="REAL" property="otherPrice2" />
+    <result column="OTHER_PRICE_DESCRIPTION2" jdbcType="VARCHAR" property="otherPriceDescription2" />
+    <result column="OTHER_PRICE3" jdbcType="REAL" property="otherPrice3" />
+    <result column="OTHER_PRICE_DESCRIPTION3" jdbcType="VARCHAR" property="otherPriceDescription3" />
+    <result column="OTHER_PRICE4" jdbcType="REAL" property="otherPrice4" />
+    <result column="OTHER_PRICE_DESCRIPTION4" jdbcType="VARCHAR" property="otherPriceDescription4" />
+    <result column="CUSTOMER_PHONE" jdbcType="VARCHAR" property="customerPhone" />
+    <result column="CUSTOMER_NAME" jdbcType="VARCHAR" property="customerName" />
+    <result column="CAR_USER_PHONE" jdbcType="VARCHAR" property="carUserPhone" />
+    <result column="CAR_USER_NAME" jdbcType="VARCHAR" property="carUserName" />
+    <result column="CALL_DATE" jdbcType="TIMESTAMP" property="callDate" />
+    <result column="BOOK_DATE" jdbcType="TIMESTAMP" property="bookDate" />
+    <result column="ORDER_START_DATE" jdbcType="TIMESTAMP" property="orderStartDate" />
+    <result column="TRANPORT_START_DATE" jdbcType="TIMESTAMP" property="tranportStartDate" />
+    <result column="TRANPORT_END_DATE" jdbcType="TIMESTAMP" property="tranportEndDate" />
+    <result column="FINISH_DATE" jdbcType="TIMESTAMP" property="finishDate" />
+    <result column="CUSTOMER_GRADE" jdbcType="INTEGER" property="customerGrade" />
+    <result column="CAR_USER_GRADE" jdbcType="INTEGER" property="carUserGrade" />
+    <result column="VIRTUAL" jdbcType="REAL" property="virtual" />
+    <result column="SETTLEMENT_TYPE" jdbcType="INTEGER" property="settlementType" />
+    <result column="CALLBACK_PHONE" jdbcType="VARCHAR" property="callbackPhone" />
+    <result column="CREATER" jdbcType="INTEGER" property="creater" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="UPDATE_BY" jdbcType="INTEGER" property="updateBy" />
+    <result column="IS_INVOICE" jdbcType="INTEGER" property="isInvoice" />
+    <result column="DEL_FLAG" jdbcType="INTEGER" property="delFlag" />
+    <result column="BAKSTR1" jdbcType="VARCHAR" property="bakstr1" />
+    <result column="BAKSTR2" jdbcType="VARCHAR" property="bakstr2" />
+    <result column="BAKSTR3" jdbcType="VARCHAR" property="bakstr3" />
+    <result column="BAKSTR4" jdbcType="VARCHAR" property="bakstr4" />
+    <result column="BAKSTR5" jdbcType="VARCHAR" property="bakstr5" />
+    <result column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="DEL_TYPE" jdbcType="INTEGER" property="delType" />
+    <result column="OTHER_PRICE5" jdbcType="REAL" property="otherPrice5" />
+    <result column="OTHER_PRICE_DESCRIPTION5" jdbcType="VARCHAR" property="otherPriceDescription5" />
+    <result column="TOLL_FEE" jdbcType="DOUBLE" property="tollFee" />
+    <result column="INCREASE_PRICE" jdbcType="DOUBLE" property="increasePrice" />
+    <result column="UPDATE_INVOICE" jdbcType="INTEGER" property="updateInvoice" />
+    <result column="INCREASE_TYPE" jdbcType="INTEGER" property="increaseType" />
+    <result column="CANAL_ID" jdbcType="INTEGER" property="canalId" />
+    <result column="CANAL_MONEY" jdbcType="DOUBLE" property="canalMoney" />
+    <result column="CHECK_STATUS" jdbcType="INTEGER" property="checkStatus" />
+    <result column="LAST_TIME" jdbcType="TIMESTAMP" property="lastTime" />
+    <result column="NOW_CHECK_BY" jdbcType="INTEGER" property="nowCheckBy" />
+    <result column="FLIGHT_NO" jdbcType="VARCHAR" property="flightNo" />
+    <result column="FLIGHT_DATE" jdbcType="DATE" property="flightDate" />
+    <result column="FLIGHT_SHUTTLE" jdbcType="INTEGER" property="flightShuttle" />
+    <result column="END_PLACE" jdbcType="LONGVARCHAR" property="endPlace" />
+  </resultMap>
+ <select id="selectByCustomePhoneBetweenTime" resultMap="BaseResultMap" parameterType="java.util.HashMap"   >
+ 
+ 	 	select * from (
+ 	select * from t_order  where CUSTOMER_PHONE=#{phone}  and CALL_date >=#{start} UNION
+	select * from t_order  where CUSTOMER_PHONE=#{phone}  and BOOK_DATE >=#{start} UNION
+	select * from t_order  where CALLBACK_PHONE=#{phone}  and CALL_date >=#{start} UNION
+	select * from t_order  where CALLBACK_PHONE=#{phone}  and BOOK_DATE >=#{start}
+	)
+	temp order by order_id desc limit 0,1
+ </select>
+
+</mapper>

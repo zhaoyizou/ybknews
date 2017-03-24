@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:web="http://java.sun.com/xml/ns/javaee"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         id="WebApp_ID" version="3.0">
+  <display-name>dzcx Web Application</display-name>
+  <context-param>
+    <param-name>webAppRootKey</param-name>
+    <param-value>dzcx_lease.root</param-value>
+  </context-param>
+
+  <context-param>
+    <param-name>logbackConfigLocation</param-name>
+    <param-value>classpath:/logback.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+  </listener>
+  
+  <listener>
+    <listener-class>org.springframework.web.util.IntrospectorCleanupListener</listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>encodingFilter</filter-name>
+    <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+    <init-param>
+      <param-name>encoding</param-name>
+      <param-value>UTF-8</param-value>
+    </init-param>
+    <init-param>
+      <param-name>forceEncoding</param-name>
+      <param-value>true</param-value>
+    </init-param>
+  </filter>
+  <!-- encoding filter for jsp page -->
+  <filter-mapping>
+    <filter-name>encodingFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>DruidWebStatFilter</filter-name>
+    <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+    <init-param>
+      <param-name>exclusions</param-name>
+      <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,*.swf,/druid/*</param-value>
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>DruidWebStatFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <servlet>
+    <servlet-name>DruidStatView</servlet-name>
+    <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DruidStatView</servlet-name>
+    <url-pattern>/druid/*</url-pattern>
+  </servlet-mapping>
+  <filter>
+    <filter-name>monitoring</filter-name>
+    <filter-class>net.bull.javamelody.MonitoringFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>monitoring</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+ <!--  <filter>
+    <filter-name>AccessFilter</filter-name>
+    <filter-class>com.visionet.core.filter.AccessFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>AccessFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping> -->
+
+
+  <!-- 定义DispatcherServlet -->
+  <servlet>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <!-- 默认/WEB-INF/[servlet名字]-servlet.xml加载上下文，
+          如果配置了contextConfigLocation参数，
+          将使用classpath:/mvc-dispatcher-servlet.xml加载上下文
+      -->
+      <param-name>contextConfigLocation</param-name>   <!--classpath:/spring-config.xml,classpath:/spring-mvc.xml-->
+      <param-value>classpath:net/bull/javamelody/monitoring-spring-datasource.xml,classpath:/spring-config.xml,classpath:/spring-mvc.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <!-- 拦截匹配的请求，这里所有请求采用名字为mvc-dispatcher的DispatcherServlet处理 -->
+  <servlet-mapping>
+    <servlet-name>mvc-dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <listener>
+    <listener-class>net.bull.javamelody.SessionListener</listener-class>
+  </listener>
+  <session-config>
+    <session-timeout>120</session-timeout>
+  </session-config>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/jsp/error/exception.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/jsp/error/exception.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/jsp/error/exception.jsp</location>
+  </error-page>
+</web-app>

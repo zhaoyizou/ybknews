@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.thirdpartydata.mapper.ThirdPartyOrderMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.thirdpartydata.model.ThirdPartyOrder">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="SOURCE" jdbcType="INTEGER" property="source" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="PARTNER_ORDER_ID" jdbcType="VARCHAR" property="partnerOrderId" />
+    <result column="PARTNER_ORDER_NO" jdbcType="VARCHAR" property="partnerOrderNo" />
+    <result column="PAY_TYPE" jdbcType="INTEGER" property="payType" />
+    <result column="PAY_AMOUNT" jdbcType="DECIMAL" property="payAmount" />
+    <result column="PAY_STATUS" jdbcType="INTEGER" property="payStatus" />
+    <result column="FINISH_DATE" jdbcType="TIMESTAMP" property="finishDate" />
+    <result column="CREATE_BY" jdbcType="INTEGER" property="createBy" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_BY" jdbcType="INTEGER" property="updateBy" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="CUSTOMER_CANCEL_CHARGE" jdbcType="DECIMAL" property="customerCancelCharge" />
+    <result column="CARUSER_CANCEL_CHARGE" jdbcType="DECIMAL" property="caruserCancelCharge" />
+    <result column="NOTICE" jdbcType="INTEGER" property="notice" />
+    <result column="ORDER_TYPE" jdbcType="INTEGER" property="orderType" />
+    <result column="DRIVER_INFO_NOTICE" jdbcType="INTEGER" property="driverInfoNotice" />
+    <result column="DRIVER_INFO_NOTICE_CALL_BACK" jdbcType="INTEGER" property="driverInfoNoticeCallBack" />
+    <result column="DRIVER_ID" jdbcType="INTEGER" property="driverId" />
+  </resultMap>
+  
+  <sql id="Base_Column_List">
+        ID, SOURCE, MERCHANT_ID, ORDER_ID, PARTNER_ORDER_ID, PARTNER_ORDER_NO, PAY_TYPE,
+        PAY_AMOUNT,PAY_STATUS,FINISH_DATE, CREATE_BY, CREATE_DATE,
+         UPDATE_BY, UPDATE_DATE,ORDER_TYPE,DRIVER_INFO_NOTICE,DRIVER_INFO_NOTICE_CALL_BACK,DRIVER_ID
+    </sql>
+  
+  <!-- 修改合作订单明细 -->
+  <update id="updateBySelective" parameterType="com.visionet.platform.thirdpartydata.model.ThirdPartyOrder">
+	  	update t_third_party_order set 
+		  	<if test="payType != null &amp;&amp; !payType.equals(&quot;&quot;)">
+		  		PAY_TYPE = #{payType}, 
+		  	</if>
+		  	<if test="payAmount != null &amp;&amp; !payAmount.equals(&quot;&quot;)">
+		  		PAY_AMOUNT = #{payAmount}, 
+		  	</if>
+		  	<if test="payStatus != null &amp;&amp; !payStatus.equals(&quot;&quot;)">
+		  		PAY_STATUS = #{payStatus}, 
+		  	</if>
+		  	<if test="finishDate != null &amp;&amp; !finishDate.equals(&quot;&quot;)">
+		  		FINISH_DATE = #{finishDate}, 
+		  	</if>
+		  	<if test="updateDate != null &amp;&amp; !updateDate.equals(&quot;&quot;)">
+		  		UPDATE_DATE = #{updateDate}
+		  	</if>
+	  	where ORDER_ID= #{orderId} and PARTNER_ORDER_NO = #{partnerOrderNo}
+  </update>
+  
+  <!-- 根据大众订单和合作方订单查询 -->
+  <select id="selectByOrderIdAndPartnerOrderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	select
+    		<include refid="Base_Column_List" />
+    	from t_third_party_order
+        where ORDER_ID = #{0}
+        and PARTNER_ORDER_NO = #{1} limit 1
+    </select>
+
+	<!-- 修改合作订单明细 -->
+  <update id="updateByParams" parameterType="com.visionet.platform.thirdpartydata.model.ThirdPartyOrder">
+	  	update t_third_party_order set 
+		  	<if test="partnerOrderNo != null &amp;&amp; !partnerOrderNo.equals(&quot;&quot;)">
+		  		PARTNER_ORDER_NO = #{partnerOrderNo}, 
+		  	</if>
+		  	<if test="updateDate != null &amp;&amp; !updateDate.equals(&quot;&quot;)">
+		  		UPDATE_DATE = #{updateDate}
+		  	</if>
+	  	where ORDER_ID= #{orderId} and MERCHANT_ID = #{merchantId}
+  </update>
+  
+  <!-- 根据大众订单和合作方订单查询 -->
+  <select id="selectOneByPartnerOrderNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    	select
+    		<include refid="Base_Column_List" />
+    	from t_third_party_order
+        where PARTNER_ORDER_NO = #{partnerOrderNo} limit 1
+    </select>
+</mapper>

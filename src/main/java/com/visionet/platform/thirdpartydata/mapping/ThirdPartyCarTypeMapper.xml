@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.thirdpartydata.mapper.ThirdPartyCarTypeMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.thirdpartydata.model.ThirdPartyCarType">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="DZCX_CAR_TYPE_ID" jdbcType="INTEGER" property="dzcxCarTypeId" />
+    <result column="DZCX_CAR_TYPE" jdbcType="VARCHAR" property="dzcxCarType" />
+    <result column="THIRD_PARTY_CAR_TYPE_ID" jdbcType="INTEGER" property="thirdPartyCarTypeId" />
+    <result column="THIRD_PARTY_CAR_TYPE" jdbcType="VARCHAR" property="thirdPartyCarType" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATE_BY" jdbcType="INTEGER" property="createBy" />
+  </resultMap>
+</mapper>

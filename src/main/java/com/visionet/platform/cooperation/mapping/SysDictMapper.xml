@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.cooperation.mapper.SysDictMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.cooperation.model.SysDict">
+    <id column="DICT_ID" jdbcType="INTEGER" property="dictId" />
+    <result column="USE_TYPE" jdbcType="INTEGER" property="useType" />
+    <result column="DICT_TYPE" jdbcType="VARCHAR" property="dictType" />
+    <result column="DICT_NAME" jdbcType="VARCHAR" property="dictName" />
+    <result column="DICT_VALUE" jdbcType="VARCHAR" property="dictValue" />
+    <result column="DESCRIPTION" jdbcType="VARCHAR" property="description" />
+    <result column="DEL_FLAG" jdbcType="INTEGER" property="delFlag" />
+    <result column="CREATE_BY" jdbcType="INTEGER" property="createBy" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="UPDATE_BY" jdbcType="INTEGER" property="updateBy" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+    <result column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    <result column="city" jdbcType="VARCHAR" property="city" />
+  </resultMap>
+
+  <!-- 通用查询结果列-->
+  <sql id="Base_Column_List">
+    dict_id, use_type, dict_type, dict_name, dict_value, description, del_flag, create_by,create_date, update_by,
+    update_date, version, city_id, city
+  </sql>
+
+  <!-- 查询：根据dictType、cityId查询 -->
+  <select id="selectByDictTypeAndCityId" resultMap="BaseResultMap" >
+    SELECT
+        <include refid="Base_Column_List" />
+    FROM b_sys_dict
+    WHERE del_flag = 1  and dict_type = #{dictType} AND city_id = #{cityId}
+  </select>
+
+</mapper>

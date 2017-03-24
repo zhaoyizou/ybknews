@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.3.xsd
+        http://www.springframework.org/schema/aop
+    	 http://www.springframework.org/schema/aop/spring-aop-4.3.xsd" default-lazy-init="true">
+
+
+
+    <!--AOP自动代理 监听 start 只对当前配置文件有效-->
+    <aop:aspectj-autoproxy expose-proxy="true"/>
+    <!--AOP自动代理 监听 end-->
+
+    <!-- 加载资源文件 start-->
+    <!--其中包含变量信息，必须在Spring配置文件的最前面加载，即第一个加载-->
+    <context:property-placeholder location="classpath:config.properties"/>
+    <!-- 加载资源文件 end-->
+
+    <!-- JSR303 Validator定义 start-->
+    <!--<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>-->
+    <!-- JSR303 Validator定义 end-->
+    <!-- 类型转换及数据格式化 -->
+    <!-- <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean"/> -->
+  
+    <!-- 配置事务异常封装 -->
+    <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+    <!-- spring工具类 -->
+  	<bean id="springUtils" class="com.visionet.core.util.spring.SpringUtils"/>
+  	<!-- 容器初始化 -->
+  	<bean class="com.visionet.core.web.InitAppcationListener"/>
+  	
+ 	<!--设置查询字符串转换器的conversion service-->
+    <!-- <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod"
+                  value="com.visionet.framework.core.base.entity.search.SearchableConvertUtils.setConversionService"/>
+        <property name="arguments" ref="conversionService"/>
+    </bean>
+ -->
+
+    <!--导入资源文件 start-->
+    <import resource="spring-config-mybatis.xml"/>
+    <import resource="spring-config-druid.xml"/>   
+    <!--导入资源文件 end-->
+
+</beans>

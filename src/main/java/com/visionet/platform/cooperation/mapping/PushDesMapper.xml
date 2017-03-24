@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.cooperation.mapper.PushDesMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.cooperation.model.PushDes">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="channel_id" jdbcType="VARCHAR" property="channelId" />
+    <result column="device_type" jdbcType="VARCHAR" property="deviceType" />
+    <result column="user_type" jdbcType="VARCHAR" property="userType" />
+  </resultMap>
+  <select id="selectByPhoneAndUserType" resultMap="BaseResultMap" parameterType="map">
+  		SELECT * FROM t_push_des WHERE phone = #{phone} AND user_type = #{userType}
+  </select>
+  
+  <!-- 查询（根据手机号查询） -->
+	<select id="selectByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
+		 SELECT
+		 	*
+		 FROM t_push_des
+		 WHERE phone = #{0} and user_type =#{1} order by id desc limit 1
+	</select>
+</mapper>

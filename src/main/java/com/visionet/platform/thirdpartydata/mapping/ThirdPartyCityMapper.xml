@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.thirdpartydata.mapper.ThirdPartyCityMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.thirdpartydata.model.ThirdPartyCity">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="DZCX_CITY_ID" jdbcType="INTEGER" property="dzcxCityId" />
+    <result column="DZCX_CITY" jdbcType="VARCHAR" property="dzcxCity" />
+    <result column="THIRD_PARTY_CITY_ID" jdbcType="INTEGER" property="thirdPartyCityId" />
+    <result column="THIRD_PARTY_CITY" jdbcType="VARCHAR" property="thirdPartyCity" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATE_BY" jdbcType="INTEGER" property="createBy" />
+    <result column="PUSH_ORDER" jdbcType="INTEGER" property="pushOrder" />
+    <result column="RECIVE_ORDER" jdbcType="INTEGER" property="reciveOrder" />
+  </resultMap>
+
+  <!-- 根据大众城市ID查询 -->
+  <select id="selectByDzcxCityId" resultMap="BaseResultMap">
+    select *
+    from t_third_party_city
+    where DZCX_CITY_ID = #{dzcxCityId} and MERCHANT_ID=#{merchantId}
+  </select>
+</mapper>

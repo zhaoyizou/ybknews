@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.cooperation.mapper.OrderInvoiceMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.cooperation.model.OrderInvoice">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="TOTAL_AMOUNT" jdbcType="DOUBLE" property="totalAmount" />
+    <result column="RECEIVER" jdbcType="VARCHAR" property="receiver" />
+    <result column="RECEIVER_PHONE" jdbcType="VARCHAR" property="receiverPhone" />
+    <result column="RECEIVER_ADDRESS" jdbcType="VARCHAR" property="receiverAddress" />
+    <result column="INVOICE_TYPE" jdbcType="INTEGER" property="invoiceType" />
+    <result column="INVOICE_DESCRIPTION" jdbcType="VARCHAR" property="invoiceDescription" />
+    <result column="COMPANY_NAME" jdbcType="VARCHAR" property="companyName" />
+    <result column="TAXPAYER_ID" jdbcType="VARCHAR" property="taxpayerId" />
+    <result column="COMPANY_ADDRESS" jdbcType="VARCHAR" property="companyAddress" />
+    <result column="COMPANY_PHONE" jdbcType="VARCHAR" property="companyPhone" />
+    <result column="COMPANY_ACCOUNT" jdbcType="VARCHAR" property="companyAccount" />
+    <result column="ACCOUNT_BANK" jdbcType="VARCHAR" property="accountBank" />
+    <result column="APPLY_DATE" jdbcType="TIMESTAMP" property="applyDate" />
+    <result column="EXPRESS_NAME" jdbcType="VARCHAR" property="expressName" />
+    <result column="EXPRESS_NUMBER" jdbcType="VARCHAR" property="expressNumber" />
+    <result column="EXPRESS_DATE" jdbcType="TIMESTAMP" property="expressDate" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="OPERATOR" jdbcType="INTEGER" property="operator" />
+    <result column="OPERATE_DATE" jdbcType="TIMESTAMP" property="operateDate" />
+    <result column="SENDER" jdbcType="INTEGER" property="sender" />
+    <result column="REMARKS" jdbcType="VARCHAR" property="remarks" />
+    <result column="area" jdbcType="VARCHAR" property="area" />
+    <result column="zip_code" jdbcType="VARCHAR" property="zipCode" />
+    <result column="SEND_TYPE" jdbcType="INTEGER" property="sendType" />
+    <result column="NUMBER" jdbcType="INTEGER" property="number" />
+    <result column="AMOUNT" jdbcType="DOUBLE" property="amount" />
+  </resultMap>
+</mapper>

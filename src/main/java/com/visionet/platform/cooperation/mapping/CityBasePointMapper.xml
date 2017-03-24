@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.cooperation.mapper.CityBasePointMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.domain.CityBasePoint">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="BASE_LAT" jdbcType="VARCHAR" property="baseLat" />
+    <result column="BASE_LON" jdbcType="VARCHAR" property="baseLon" />
+    <result column="DEL_FLAG" jdbcType="BIT" property="delFlag" />
+    <result column="MAX_WIDE" jdbcType="INTEGER" property="maxWide" />
+    <result column="MAX_LONG" jdbcType="INTEGER" property="maxLong" />
+  </resultMap>
+
+  <sql id="Base_Column_List" >
+    ID, CITY_ID, CITY, BASE_LAT, BASE_LON, DEL_FLAG, MAX_WIDE, MAX_LONG
+  </sql>
+  <select id="selectByCityId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_city_base_point
+    where CITY_ID = #{cityId}
+  </select>
+</mapper>

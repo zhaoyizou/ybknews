@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.thirdpartydata.mapper.ThirdPartyAppCancelMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.thirdpartydata.model.ThirdPartyAppCancel">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_ID" jdbcType="INTEGER" property="merchantId" />
+    <result column="DZCX_CANCEL_TYPE_ID" jdbcType="INTEGER" property="dzcxCancelTypeId" />
+    <result column="DZCX_CANCEL_TYPE" jdbcType="VARCHAR" property="dzcxCancelType" />
+    <result column="THIRD_PARTY_CANCEL_TYPE_ID" jdbcType="INTEGER" property="thirdPartyCancelTypeId" />
+    <result column="THIRD_PARTY_CANCEL_TYPE" jdbcType="VARCHAR" property="thirdPartyCancelType" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATE_BY" jdbcType="INTEGER" property="createBy" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.thirdpartydata.mapper.ThirdPartyMerchantsMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.thirdpartydata.model.ThirdPartyMerchants">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="MERCHANT_NAME" jdbcType="VARCHAR" property="merchantName" />
+    <result column="MERCHANT_NUMBER" jdbcType="VARCHAR" property="merchantNumber" />
+    <result column="DZCX_SEC" jdbcType="VARCHAR" property="dzcxSec" />
+    <result column="MERCHANT_SEC" jdbcType="VARCHAR" property="merchantSec" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="CREATE_BY" jdbcType="INTEGER" property="createBy" />
+    <result column="DEL_FLAG" jdbcType="INTEGER" property="delFlag" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.cooperation.mapper.OrderPayDetailMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.cooperation.model.OrderPayDetail">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="ORDER_ID" jdbcType="VARCHAR" property="orderId" />
+    <result column="CUSTOMER_PHONE" jdbcType="VARCHAR" property="customerPhone" />
+    <result column="CAR_ID" jdbcType="INTEGER" property="carId" />
+    <result column="CAR_USER_PHONE" jdbcType="VARCHAR" property="carUserPhone" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
+    <result column="ACCOUNT" jdbcType="VARCHAR" property="account" />
+    <result column="MONEY" jdbcType="REAL" property="money" />
+    <result column="CAR_USER_GET" jdbcType="REAL" property="carUserGet" />
+    <result column="PLATE_GET" jdbcType="REAL" property="plateGet" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="DEL_FLAG" jdbcType="INTEGER" property="delFlag" />
+  </resultMap>
+  
+  <!-- 查询订单余额支付金额 -->
+  <select id="selectDetailByOrderId" resultMap="BaseResultMap">
+  	select * from t_order_pay_detail where ORDER_ID = #{orderId} and TYPE = 4
+  </select>
+  
+</mapper>

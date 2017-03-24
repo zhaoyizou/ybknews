@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.cooperation.mapper.CarUserMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.cooperation.model.CarUser">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="BUSINESS_TYPE" jdbcType="INTEGER" property="businessType" />
+    <result column="TYPE" jdbcType="INTEGER" property="type" />
+    <result column="HEAD_PIC" jdbcType="VARCHAR" property="headPic" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+    <result column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="COMPANY" jdbcType="VARCHAR" property="company" />
+    <result column="GROUP_NAME" jdbcType="VARCHAR" property="groupName" />
+    <result column="LEVEL" jdbcType="INTEGER" property="level" />
+    <result column="GRADE" jdbcType="DOUBLE" property="grade" />
+    <result column="TOTAL" jdbcType="DOUBLE" property="total" />
+    <result column="BALANCE" jdbcType="DOUBLE" property="balance" />
+    <result column="POINTS_SUM" jdbcType="DOUBLE" property="pointsSum" />
+    <result column="POINTS_AVAILABLE" jdbcType="DOUBLE" property="pointsAvailable" />
+    <result column="VIRTUAL_CURRENCY" jdbcType="DOUBLE" property="virtualCurrency" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="CAR_TYPE" jdbcType="INTEGER" property="carType" />
+    <result column="CAR_NUMBER" jdbcType="VARCHAR" property="carNumber" />
+    <result column="MAIN_USER" jdbcType="VARCHAR" property="mainUser" />
+    <result column="ORDER_COUNT" jdbcType="INTEGER" property="orderCount" />
+    <result column="ORDER_COUNT_TODAY" jdbcType="INTEGER" property="orderCountToday" />
+    <result column="IS_VALID" jdbcType="INTEGER" property="isValid" />
+    <result column="REGISTER_DATE" jdbcType="TIMESTAMP" property="registerDate" />
+    <result column="IS_LOGIN" jdbcType="INTEGER" property="isLogin" />
+    <result column="LAST_LOGIN_DATE" jdbcType="TIMESTAMP" property="lastLoginDate" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="UPDATE_BY" jdbcType="INTEGER" property="updateBy" />
+    <result column="XH_LICENSE_NUMBER" jdbcType="VARCHAR" property="xhLicenseNumber" />
+    <result column="JS_LICENSE_NUMBER" jdbcType="VARCHAR" property="jsLicenseNumber" />
+    <result column="BAKSTR1" jdbcType="VARCHAR" property="bakstr1" />
+    <result column="BAKSTR2" jdbcType="VARCHAR" property="bakstr2" />
+    <result column="BAKSTR3" jdbcType="VARCHAR" property="bakstr3" />
+    <result column="BAKSTR4" jdbcType="VARCHAR" property="bakstr4" />
+    <result column="BAKSTR5" jdbcType="VARCHAR" property="bakstr5" />
+    <result column="BAKSTR6" jdbcType="VARCHAR" property="bakstr6" />
+    <result column="BAKSTR7" jdbcType="VARCHAR" property="bakstr7" />
+    <result column="BAKSTR8" jdbcType="VARCHAR" property="bakstr8" />
+    <result column="permission_license_number" jdbcType="VARCHAR" property="permissionLicenseNumber" />
+    <result column="LAST_MESSAGE_DATE" jdbcType="TIMESTAMP" property="lastMessageDate" />
+    <result column="Bonus_Money" jdbcType="DOUBLE" property="bonusMoney" />
+    <result column="LAST_NOTIC_DATE" jdbcType="TIMESTAMP" property="lastNoticDate" />
+    <result column="INVOICE_BALANCE" jdbcType="DOUBLE" property="invoiceBalance" />
+    <result column="IMEI" jdbcType="VARCHAR" property="imei" />
+    <result column="SERVICE_STATUS" jdbcType="INTEGER" property="serviceStatus" />
+    <result column="cash_money" jdbcType="DOUBLE" property="cashMoney" />
+    <result column="wait_pay_money" jdbcType="DOUBLE" property="waitPayMoney" />
+    <result column="freeze_balance" jdbcType="DOUBLE" property="freezeBalance" />
+    <result column="check_freeze_balance" jdbcType="DOUBLE" property="checkFreezeBalance" />
+    <result column="freeze_bonus_money" jdbcType="DOUBLE" property="freezeBonusMoney" />
+    <result column="check_freeze_bonus_money" jdbcType="DOUBLE" property="checkFreezeBonusMoney" />
+    <result column="DEL_FLAG" jdbcType="INTEGER" property="delFlag" />
+    <result column="DRIVER_ID" jdbcType="INTEGER" property="driverId" />
+    <result column="DRIVER_SOURCE" jdbcType="INTEGER" property="driverSource" />
+  </resultMap>
+  
+  <!-- 查询第三方司机信息 -->
+  <select id="selectByParam" resultMap="BaseResultMap">
+  	select * from t_car_user where DRIVER_ID = #{0} and DRIVER_SOURCE = #{1} and DEL_FLAG = 1
+  </select>
+  
+</mapper>

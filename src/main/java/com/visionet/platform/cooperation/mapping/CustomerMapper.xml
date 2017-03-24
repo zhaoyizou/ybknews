@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.visionet.platform.cooperation.mapper.CustomerMapper">
+  <resultMap id="BaseResultMap" type="com.visionet.platform.cooperation.model.Customer">
+    <id column="PHONE" jdbcType="VARCHAR" property="phone" />
+    <result column="PASSWORD" jdbcType="VARCHAR" property="password" />
+    <result column="HEAD_PIC" jdbcType="VARCHAR" property="headPic" />
+    <result column="NAME" jdbcType="VARCHAR" property="name" />
+    <result column="NICK_NAME" jdbcType="VARCHAR" property="nickName" />
+    <result column="ID_NUMBER" jdbcType="VARCHAR" property="idNumber" />
+    <result column="CITY_ID" jdbcType="INTEGER" property="cityId" />
+    <result column="CITY" jdbcType="VARCHAR" property="city" />
+    <result column="LEVEL" jdbcType="INTEGER" property="level" />
+    <result column="GRADE" jdbcType="INTEGER" property="grade" />
+    <result column="TOTAL" jdbcType="DOUBLE" property="total" />
+    <result column="BALANCE" jdbcType="DOUBLE" property="balance" />
+    <result column="DZ_YUEZHUBI_SUM" jdbcType="DOUBLE" property="dzYuezhubiSum" />
+    <result column="DZ_YUEZHUBI_AVAILABLE" jdbcType="DOUBLE" property="dzYuezhubiAvailable" />
+    <result column="POINTS_SUM" jdbcType="DOUBLE" property="pointsSum" />
+    <result column="POINTS_AVAILABLE" jdbcType="DOUBLE" property="pointsAvailable" />
+    <result column="ORDER_COUNT" jdbcType="INTEGER" property="orderCount" />
+    <result column="FAILED_ORDER_COUNT" jdbcType="INTEGER" property="failedOrderCount" />
+    <result column="CREATE_DATE" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="LAST_LOGIN_DATE" jdbcType="TIMESTAMP" property="lastLoginDate" />
+    <result column="STATUS" jdbcType="INTEGER" property="status" />
+    <result column="IS_VALID" jdbcType="INTEGER" property="isValid" />
+    <result column="UPDATE_DATE" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="UPDATE_BY" jdbcType="INTEGER" property="updateBy" />
+    <result column="DEL_FLAG" jdbcType="INTEGER" property="delFlag" />
+    <result column="BAKSTR1" jdbcType="VARCHAR" property="bakstr1" />
+    <result column="BAKSTR2" jdbcType="VARCHAR" property="bakstr2" />
+    <result column="BAKSTR3" jdbcType="VARCHAR" property="bakstr3" />
+    <result column="BAKSTR4" jdbcType="VARCHAR" property="bakstr4" />
+    <result column="BAKSTR5" jdbcType="VARCHAR" property="bakstr5" />
+    <result column="IS_WECHAT" jdbcType="INTEGER" property="isWechat" />
+    <result column="IS_APP" jdbcType="INTEGER" property="isApp" />
+    <result column="IS_CALLCENTER" jdbcType="INTEGER" property="isCallcenter" />
+    <result column="OPENID" jdbcType="VARCHAR" property="openid" />
+    <result column="LAST_MESSAGE_DATE" jdbcType="TIMESTAMP" property="lastMessageDate" />
+    <result column="LAST_NOTIC_DATE" jdbcType="TIMESTAMP" property="lastNoticDate" />
+    <result column="INVOICE_BALANCE" jdbcType="DOUBLE" property="invoiceBalance" />
+    <result column="IS_LOGIN" jdbcType="INTEGER" property="isLogin" />
+    <result column="IMEI" jdbcType="VARCHAR" property="imei" />
+    <result column="LAST_COUPONS_DATE" jdbcType="TIMESTAMP" property="lastCouponsDate" />
+    <result column="SOURCE" jdbcType="VARCHAR" property="source" />
+    <result column="LAST_FLIGHT_DATE" jdbcType="TIMESTAMP" property="lastFlightDate" />
+    <result column="LAST_FLIGHT_LIST_DATE" jdbcType="TIMESTAMP" property="lastFlightListDate" />
+  </resultMap>
+  
+  <!-- 查询乘客可开票额度 -->
+  <select id="selectOneByPhone" resultMap="BaseResultMap">
+  	select PHONE,INVOICE_BALANCE from t_customer where PHONE = #{phone}
+  </select>
+</mapper>
